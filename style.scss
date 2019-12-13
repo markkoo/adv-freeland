@@ -1,0 +1,298 @@
+$Mobile: "(max-width: 599.99px) and (orientation: portrait), (max-width: 959.99px) and (orientation: landscape)";
+$PC: "(min-width: 600px) and (orientation: portrait), (min-width: 960px) and (orientation: landscape)";
+$font-1: "PT Sans", sans-serif;
+$product-image-scale: 120%;
+$text-content-pading: 4px 8px 8px;
+$text-height: 18px;
+
+$background-color: #f2f2f2;
+$color-primary: #ed087f;
+$color-label-bg: #252525;
+$color-label-text: white;
+$color-start: #ffa800;
+$color-text: #777;
+
+$footer-background: #252525;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+body {
+  background: $background-color;
+}
+
+.container {
+  @media #{$PC} {
+    margin: 0 auto;
+    max-width: 1280px;
+  }
+}
+
+.banner {
+  img {
+    width: 100%;
+    display: block;
+  }
+}
+
+.grid {
+  padding: 8px 6px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  @media #{$PC} {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+.category {
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $font-1;
+  margin-top: 16px;
+  @media #{$PC} {
+    height: 64px;
+  }
+  h2 {
+    padding: 0 10px;
+    border-bottom: 2px solid #252525;
+    color: #252525;
+    font-size: 16px;
+    font-weight: 700;
+    position: relative;
+    // &:after{
+    //     width: 100%;
+    //     height: 2;;
+    //     position: absolute;
+    //     content: '';
+    // }
+  }
+}
+
+.card {
+  $self: &;
+  background: white;
+  position: relative;
+  cursor: pointer;
+  .overlay_content & {
+    cursor: default;
+    #{$self}_content {
+      padding: 8px;
+    }
+    #{$self}_star {
+      height: 24px;
+      .material-icons {
+        font-size: 16px;
+        margin-right: 4px;
+      }
+    }
+    #{$self}_title {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+    }
+    #{$self}_price {
+      font-size: 16px;
+      line-height: 24px;
+      &-original {
+        margin-right: 8px;
+      }
+      &-discounted {
+        font-weight: 700;
+      }
+    }
+    #{$self}_label {
+      width: 40px;
+      height: 40px;
+      top: 10px;
+      left: auto;
+      right: 10px;
+      background-color: $color-label-bg;
+      color: $color-label-text;
+      font-weight: 700;
+      font-size: 15px;
+    }
+  }
+  &_img {
+    padding-top: $product-image-scale;
+    background: black;
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      object-fit: cover;
+    }
+  }
+  &_content {
+    padding: $text-content-pading;
+  }
+  &_star {
+    height: $text-height;
+    display: flex;
+    align-items: center;
+    color: $color-start;
+    .material-icons {
+      font-size: 13px;
+      margin-right: 4px;
+    }
+  }
+  &_title {
+    font-family: $font-1;
+    font-size: 13px;
+    line-height: $text-height;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $color-text;
+    font-weight: 400;
+  }
+  &_price {
+    font-family: $font-1;
+    font-size: 13px;
+    line-height: $text-height;
+    &-original {
+      text-decoration: line-through;
+      margin-right: 8px;
+      color: $color-text;
+    }
+    &-discounted {
+      color: $color-primary;
+      font-weight: 700;
+    }
+  }
+  &_label {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 50%;
+    background-color: $color-label-bg;
+    color: $color-label-text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $font-1;
+    font-weight: 700;
+    font-size: 12px;
+  }
+}
+
+.footer {
+  margin-top: 16px;
+  padding: 10px 10px 16px;
+  background: $footer-background;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &_link {
+    padding: 3px 0;
+    display: block;
+    font-family: $font-1;
+    font-size: 14px;
+    color: white;
+    .material-icons {
+      vertical-align: bottom;
+      font-size: 16px;
+      margin-right: 4px;
+    }
+  }
+  &_backgroundIcon {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    background-size: auto 16px;
+  }
+}
+
+.whatsapp_icon {
+  background-image: url(/adv-image/whatsapp.svg);
+  background-repeat: no-repeat;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $background-color;
+  overflow: auto;
+  transform: translateX(100%);
+  transition: 0.3s ease-in;
+  &_container {
+    @media #{$PC} {
+      margin: 0 auto;
+      max-width: 1280px;
+      position: relative;
+    }
+  }
+  &.show {
+    transform: translateX(0);
+  }
+  &_close {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    left: 10px;
+    border-radius: 50%;
+    background-color: rgba(black, 0.1);
+    color: $color-label-text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  &_action {
+    padding: 16px 16px 32px;
+  }
+  &_button {
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 8px 16px;
+    font-family: $font-1;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+    font-weight: 700;
+    &:nth-child(1) {
+      background: #25d366;
+      color: white;
+    }
+    &:nth-child(2) {
+      margin-top: 8px;
+      background: $color-primary;
+      color: white;
+    }
+    &:nth-child(3) {
+      margin-top: 8px;
+      background: white;
+    }
+  }
+}
